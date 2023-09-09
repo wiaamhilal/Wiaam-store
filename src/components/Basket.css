@@ -1,0 +1,8 @@
+@media (max-width: 768px) {
+  .addd {
+    display: none;
+  }
+  .my-con {
+    flex-direction: column-reverse;
+  }
+}

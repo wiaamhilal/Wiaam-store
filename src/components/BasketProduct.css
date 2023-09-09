@@ -1,0 +1,40 @@
+.img-pro {
+  width: 200px;
+  height: 200px;
+}
+.star-img {
+  width: 20px;
+  margin-right: 10px;
+}
+.my-btn {
+  bottom: 10px;
+  right: 10px;
+}
+
+@media (max-width: 768px) {
+  .img-pro {
+    width: 100px;
+    height: 100px;
+    padding: 10px 0 10px 10px;
+  }
+  .title {
+    font-size: 10px;
+  }
+  .price {
+    font-size: 10px;
+  }
+  .star-img {
+    width: 10px;
+    margin-right: 2px;
+  }
+  .my-btn {
+    /* transform: translate(110px, -50px); */
+    bottom: 10px;
+    right: 10px;
+    width: 70px;
+    font-size: 10px !important;
+  }
+  .BasketProduct {
+    height: 110px;
+  }
+}

@@ -1,0 +1,34 @@
+.address-text {
+  font-size: 17px;
+}
+.address-title {
+  font-size: 20px;
+}
+.address-holder {
+  gap: 100px;
+  height: 100px;
+}
+
+@media (min-width: 768px) {
+  .my-holder {
+    margin-left: 300px;
+  }
+  .Payment-method {
+    font-size: 20px;
+  }
+  .card-method {
+    font-size: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .address-title {
+    font-size: 15px;
+  }
+  .address-text {
+    font-size: 15px;
+  }
+  .address-holder {
+    gap: 50px;
+    height: 60px;
+  }
+}

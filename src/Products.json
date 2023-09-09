@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "اسس بطاقة رسومات للالعاب تي يو اف جيفورس RTX® 4090 اصدار OC (منفذ الملحقات الاضافية السريع 4.0، 24GB GDDR6X، HDMI 2.1a، منفذ عرض 1.4a)",
+    "price": 8700,
+    "rate": 5,
+    "imgSrc": "https://m.media-amazon.com/images/I/717sO9fjnZL._AC_SX679_.jpg"
+  },
+  {
+    "id": 2,
+    "title": "MSI لاب توب GF63 بريميوم للالعاب بشاشة FHD 15.6 انش باطار رفيع ومعالج انتل رباعي النواة الجيل العاشر ",
+    "price": 2280,
+    "rate": 4,
+    "imgSrc": "https://m.media-amazon.com/images/I/716sWoIVxDS._AC_SX522_.jpg"
+  },
+  {
+    "id": 3,
+    "title": "بوكو X5 برو شبكة الجيل الخامس 5G (ذاكرة رام 8 جيجابايت بلون اصفر، تخزين 256) - شاشة عرض بولد 120 هرتز | معالج سناب دراجون® 778G | شحن توربو 67 واط | كاميرا احترافية 108 ميجابكسل",
+    "price": 1005,
+    "rate": 4,
+    "imgSrc": "https://m.media-amazon.com/images/I/61NtAV637dL._AC_SX679_.jpg"
+  },
+  {
+    "id": 4,
+    "title": "انتل معالج كور i9 (الجيل الثاني عشر) i9-12900KS سداسي النواة ",
+    "price": 1579,
+    "rate": 3,
+    "imgSrc": "https://m.media-amazon.com/images/I/61vAL6P8pFL._AC_SX522_.jpg"
+  }
+]
