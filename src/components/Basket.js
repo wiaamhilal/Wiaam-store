@@ -1,14 +1,14 @@
 import React from "react";
 import "./Basket.css";
-import { useShopingCard } from "./GlobalState";
+import {useShopingCard} from "./GlobalState";
 import BasketProduct from "./BasketProduct";
 import imgChickOut from "../img/checkoutAd.jpg";
 import CurrencyFormat from "react-currency-format";
-import { GetBasketTotal } from "./AppReducer";
-import { useNavigate } from "react-router-dom";
+import {GetBasketTotal} from "./AppReducer";
+import {useNavigate} from "react-router-dom";
 
 const Basket = () => {
-  const { user, basket } = useShopingCard();
+  const {user, basket} = useShopingCard();
   const navicate = useNavigate();
   return (
     <div className="Basket">
@@ -18,7 +18,7 @@ const Basket = () => {
             src={imgChickOut}
             alt="ad"
             className="w-100 addd"
-            style={{ height: "80px" }}
+            style={{height: "80px"}}
           />
           <h2 className="m-3">Hello, {user ? `${user.email}` : "Guiest"}</h2>
           <h3 className="mb-3">your shoping basket</h3>
@@ -30,7 +30,7 @@ const Basket = () => {
         </div>
         <div
           className="col-md-3 p-3 text-center bg-light rounded"
-          style={{ height: "150px" }}
+          style={{height: "150px"}}
         >
           <CurrencyFormat
             renderText={(value) => (
@@ -41,7 +41,7 @@ const Basket = () => {
                 </p>
                 <div>
                   <input type="checkbox" className="me-2" id="dis" />{" "}
-                  <label for="dis" style={{ cursor: "pointer" }}>
+                  <label for="dis" style={{cursor: "pointer"}}>
                     this order contain a gift
                   </label>
                 </div>
@@ -57,7 +57,7 @@ const Basket = () => {
             displayType="text"
             decimalScale={2}
             thousandSeparator={true}
-            prefix="$"
+            prefix="AED "
           />
         </div>
       </div>

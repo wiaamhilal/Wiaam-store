@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import star from "../img/star.png";
 import "./Product.css";
-import { useShopingCard } from "./GlobalState";
+import {useShopingCard} from "./GlobalState";
 
-const Product = ({ id, title, imgSrc, rate, price }) => {
-  const { dispatch, basket } = useShopingCard();
+const Product = ({id, title, imgSrc, rate, price}) => {
+  const {dispatch, basket} = useShopingCard();
   const AddToBasket = () => {
     dispatch({
       type: "ADD_TO_BASKET",
@@ -23,7 +23,7 @@ const Product = ({ id, title, imgSrc, rate, price }) => {
   return (
     <div className="product shadow position-relative">
       <p className="title">{title}</p>
-      <p className="price">dhr {price}</p>
+      <p className="price">AED {price}</p>
       <div className="star">
         {Array(rate)
           .fill()

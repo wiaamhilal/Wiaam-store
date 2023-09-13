@@ -1,9 +1,9 @@
 import React from "react";
 import star from "../img/star.png";
-import { useShopingCard } from "./GlobalState";
+import {useShopingCard} from "./GlobalState";
 import "./BasketProduct.css";
-const BasketProduct = ({ id, title, imgSrc, price, rate }) => {
-  const { dispatch } = useShopingCard();
+const BasketProduct = ({id, title, imgSrc, price, rate, hiddenButton}) => {
+  const {dispatch} = useShopingCard();
   const RemoveFromBasket = () => {
     dispatch({
       type: "REMOVE_ITEM",
@@ -17,11 +17,11 @@ const BasketProduct = ({ id, title, imgSrc, price, rate }) => {
           className="me-4 img-pro"
           src={imgSrc}
           alt="product"
-          style={{ objectFit: "contain" }}
+          style={{objectFit: "contain"}}
         />
         <div>
           <p className="fw-bold title">{title}</p>
-          <p className="fw-bold price">$ {price}</p>
+          <p className="fw-bold price">AED {price}</p>
           <div className="star">
             {Array(rate)
               .fill()
@@ -29,12 +29,14 @@ const BasketProduct = ({ id, title, imgSrc, price, rate }) => {
                 <img src={star} alt="star" className="star-img" style={{}} />
               ))}
           </div>
-          <button
-            className="btn btn-warning btn-sm my-btn position-absolute"
-            onClick={RemoveFromBasket}
-          >
-            Remove
-          </button>
+          {!hiddenButton && (
+            <button
+              className="btn btn-warning btn-sm my-btn position-absolute"
+              onClick={RemoveFromBasket}
+            >
+              Remove
+            </button>
+          )}
         </div>
       </div>
     </div>

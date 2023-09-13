@@ -26,5 +26,26 @@
     "price": 1579,
     "rate": 3,
     "imgSrc": "https://m.media-amazon.com/images/I/61vAL6P8pFL._AC_SX522_.jpg"
+  },
+  {
+    "id": 5,
+    "title": "سماعات لاسلكية على الاذن جيه بي ال تون 510BT، صوت جهوري نقي، بطارية 40 ساعة، شحن سريع، USB نوع C سريع، اتصال متعدد النقاط، تصميم قابل للطي، مساعد صوتي - اسود، JBLT510BTBLKEU   ",
+    "price": 136,
+    "rate": 2,
+    "imgSrc": "https://m.media-amazon.com/images/I/71+u7587bjL._AC_SX679_.jpg"
+  },
+  {
+    "id": 6,
+    "title": "سماعات Ht38 من لينوفو بلون ابيض",
+    "price": 26,
+    "rate": 5,
+    "imgSrc": "https://m.media-amazon.com/images/I/310Bv1rSs2S._AC_SX679_.jpg"
+  },
+  {
+    "id": 7,
+    "title": "PlayStation 5 الاصدار الرقمي",
+    "price": 1689,
+    "rate": 4,
+    "imgSrc": "https://m.media-amazon.com/images/I/6102cRAIpaL._AC_SX679_.jpg"
   }
 ]

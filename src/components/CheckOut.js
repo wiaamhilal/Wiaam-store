@@ -1,13 +1,67 @@
-import React from "react";
-import { useShopingCard } from "./GlobalState";
+import React, {useEffect, useState} from "react";
+import {useShopingCard} from "./GlobalState";
 import BasketProduct from "./BasketProduct";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import CurrencyFormat from "react-currency-format";
-import { GetBasketTotal } from "./AppReducer";
+import {GetBasketTotal} from "./AppReducer";
 import "./checkOut.css";
+import {CardElement, useStripe} from "@stripe/react-stripe-js";
+import axios from "./axios";
+import {useElements} from "@stripe/react-stripe-js";
+import {doc, setDoc} from "firebase/firestore";
+import {db} from "../firebase";
 
 const CheckOut = () => {
-  const { basket } = useShopingCard();
+  const navicate = useNavigate();
+  const stripe = useStripe();
+  const elements = useElements();
+  const {basket, user, dispatch} = useShopingCard();
+  const [disabled, setdisabled] = useState(true);
+  const [clientSecret, setclientSecret] = useState();
+  const [prossecing, setprossecing] = useState(false);
+  const [eror, seterror] = useState(null);
+  const [success, setsuccess] = useState(false);
+  useEffect(() => {
+    const getClientSecret = async () => {
+      const response = await axios({
+        method: "post",
+        url: `/payments/create?total=${GetBasketTotal(basket) * 100}`,
+      });
+      setclientSecret(response.data.clientSecret);
+      return response;
+    };
+    getClientSecret();
+  }, [basket]);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setprossecing(true);
+    const payload = await stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      })
+      .then(({paymentIntent}) => {
+        const ref = doc(db, "users", user?.uid, "orders", paymentIntent.id);
+        setDoc(ref, {
+          basket: basket,
+          amount: paymentIntent.amount,
+          created: paymentIntent.created,
+        });
+        setsuccess(true);
+        seterror(null);
+        setprossecing(false);
+        dispatch({
+          type: "CLEAR_BASKET",
+        });
+        navicate("/orders", {replace: true});
+      });
+  };
+
+  const handleChange = (e) => {
+    setdisabled(e.emty);
+    seterror(eror ? eror.message : "");
+  };
   return (
     <div className="checkout">
       <Link
@@ -36,7 +90,7 @@ const CheckOut = () => {
       <div className="p-4">
         <span
           className="mb-4"
-          style={{ fontSize: "20px", fontWeight: "bold", display: "block" }}
+          style={{fontSize: "20px", fontWeight: "bold", display: "block"}}
         >
           Review items and delivrey
         </span>
@@ -46,17 +100,17 @@ const CheckOut = () => {
           ))}
         </div>
         <div
-          style={{ height: "100px", borderTop: "1px solid #ccc" }}
+          style={{height: "100px", borderTop: "1px solid #ccc"}}
           className="p-4 d-flex mb-4"
         >
           <span
             className="col-md-2 Payment-method "
-            style={{ fontWeight: "bold" }}
+            style={{fontWeight: "bold"}}
           >
             Payment method
           </span>
-          <form className="w-100">
-            <span>card:</span>
+          <form onSubmit={handleSubmit} className="w-100">
+            <CardElement className="m-2" onChange={handleChange} />
             <div
               className="card-method"
               style={{
@@ -71,11 +125,16 @@ const CheckOut = () => {
                   displayType="text"
                   thousandSeparator={true}
                   decimalScale={2}
-                  prefix="$"
+                  prefix="AED "
                 />
               }
             </div>
-            <button className="btn btn-warning w-100">Buy Now</button>
+            <button
+              disabled={success || disabled || prossecing}
+              className="btn btn-warning w-100"
+            >
+              {prossecing ? "prossecing" : "Buy Now"}
+            </button>
           </form>
         </div>
       </div>

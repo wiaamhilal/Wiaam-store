@@ -35,6 +35,11 @@ const AppReducer = (state = initialState, action) => {
         ...state,
         basket: newBasket,
       };
+    case "CLEAR_BASKET":
+      return {
+        ...state,
+        basket: [],
+      };
     default:
       return state;
   }
