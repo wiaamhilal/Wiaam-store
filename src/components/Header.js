@@ -1,14 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState} from "react";
+import {Link} from "react-router-dom";
 import logo from "../img/wiaam logo.jpg";
 import "./Header.css";
-import { useShopingCard } from "./GlobalState";
-import { auth } from "../firebase";
-const Header = () => {
+import {useShopingCard} from "./GlobalState";
+import {auth} from "../firebase";
+import {useSelector} from "react-redux";
+const Header = ({setserch}) => {
   const handleSignOut = () => {
     auth.signOut();
   };
-  const { user, basket } = useShopingCard();
+  const {basket} = useShopingCard();
+  const {userRedux} = useSelector((state) => state.UserSlice);
   return (
     <div className="Header d-flex sticky-top">
       <div className="firstt d-flex align-items-center">
@@ -23,7 +25,11 @@ const Header = () => {
           <span className="numper">{basket?.length}</span>
         </Link>
         <div className="input-div">
-          <input className="input-text" type="text" />
+          <input
+            className="input-text"
+            type="text"
+            onChange={(e) => setserch(e.target.value)}
+          />
           <img
             src="https://icon-library.com/images/search-icon-white/search-icon-white-16.jpg"
             className="serch bg-warning"
@@ -33,8 +39,10 @@ const Header = () => {
       </div>
       <div className="secondd d-flex align-items-center">
         <Link className="main" to="/login" onClick={handleSignOut}>
-          <div className="first">Hello {user ? `${user.email}` : "geust"}</div>
-          <div className="second">{user ? "sign out" : "sign in"}</div>
+          <div className="first">
+            Hello {userRedux ? `${userRedux.email}` : "geust"}
+          </div>
+          <div className="second">{userRedux ? "sign out" : "sign in"}</div>
         </Link>
         <Link className="main" to="/orders">
           <div className="first">retums</div>

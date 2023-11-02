@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, {useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
 import logo from "../img/wiaam logo.jpg";
 import "./Login.css";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { auth } from "../firebase";
+import {auth} from "../firebase";
 const Login = () => {
   const [email, setemail] = useState();
   const [password, setpassword] = useState();
@@ -47,7 +47,7 @@ const Login = () => {
       <Link to="/">
         <img src={logo} alt="logo" className="logo" />
       </Link>
-      <div className="shadow-lg p-3" style={{ maxWidth: "300px" }}>
+      <div className="shadow-lg p-3" style={{maxWidth: "300px"}}>
         <h1>sign in</h1>
         <form>
           <h6>Email</h6>
@@ -67,7 +67,7 @@ const Login = () => {
           <button className="btn btn-warning w-100" onClick={signIn}>
             sign in{" "}
           </button>
-          <p className="mt-2 text-secondary" style={{ fontSize: "13px" }}>
+          <p className="mt-2 text-secondary" style={{fontSize: "13px"}}>
             wellcome to wiaam Hilal page thank you for apply to our aplcation
           </p>
           <button className="btn btn-secondary w-100" onClick={Register}>

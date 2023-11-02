@@ -19,6 +19,9 @@
   .card-method {
     font-size: 20px;
   }
+  .last-div {
+    padding: 15px;
+  }
 }
 @media (max-width: 767px) {
   .address-title {
@@ -30,5 +33,12 @@
   .address-holder {
     gap: 50px;
     height: 60px;
+  }
+  .my-card-element {
+    width: 100%;
+    padding: 10px 0 10px 0;
+  }
+  .Payment-method {
+    display: none;
   }
 }

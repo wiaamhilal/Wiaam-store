@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useShopingCard} from "./GlobalState";
 import BasketProduct from "./BasketProduct";
 import {Link, useNavigate} from "react-router-dom";
@@ -35,7 +35,7 @@ const CheckOut = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setprossecing(true);
-    const payload = await stripe
+    await stripe
       .confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
@@ -45,7 +45,7 @@ const CheckOut = () => {
         const ref = doc(db, "users", user?.uid, "orders", paymentIntent.id);
         setDoc(ref, {
           basket: basket,
-          amount: paymentIntent.amount,
+          amount: GetBasketTotal(basket),
           created: paymentIntent.created,
         });
         setsuccess(true);
@@ -57,7 +57,6 @@ const CheckOut = () => {
         navicate("/orders", {replace: true});
       });
   };
-
   const handleChange = (e) => {
     setdisabled(e.emty);
     seterror(eror ? eror.message : "");
@@ -101,7 +100,7 @@ const CheckOut = () => {
         </div>
         <div
           style={{height: "100px", borderTop: "1px solid #ccc"}}
-          className="p-4 d-flex mb-4"
+          className="last-div d-flex mb-4"
         >
           <span
             className="col-md-2 Payment-method "
@@ -110,7 +109,10 @@ const CheckOut = () => {
             Payment method
           </span>
           <form onSubmit={handleSubmit} className="w-100">
-            <CardElement className="m-2" onChange={handleChange} />
+            <CardElement
+              className="m-2 my-card-element"
+              onChange={handleChange}
+            />
             <div
               className="card-method"
               style={{
